@@ -1,4 +1,5 @@
 /* eslint-env browser */
+/* global Game */
 exports = typeof window !== "undefined" && window !== null ? window : global;
 var seedrandom = require("seedrandom");
 if (process.env.SEED) seedrandom(process.env.SEED, { global: true });
@@ -76,7 +77,7 @@ exports.Game = function() {
     console.log(players[currentPlayer] + " is the current player");
     console.log("They have rolled a " + roll);
 
-    if (inPenaltyBox[currentPlayer]) {
+    if (inPenaltyBox[currentPlayer])
       if (roll % 2 != 0) {
         isGettingOutOfPenaltyBox = true;
 
@@ -84,9 +85,8 @@ exports.Game = function() {
           players[currentPlayer] + " is getting out of the penalty box"
         );
         places[currentPlayer] = places[currentPlayer] + roll;
-        if (places[currentPlayer] > 11) {
+        if (places[currentPlayer] > 11)
           places[currentPlayer] = places[currentPlayer] - 12;
-        }
 
         console.log(
           players[currentPlayer] + "'s new location is " + places[currentPlayer]
@@ -99,11 +99,10 @@ exports.Game = function() {
         );
         isGettingOutOfPenaltyBox = false;
       }
-    } else {
+    else {
       places[currentPlayer] = places[currentPlayer] + roll;
-      if (places[currentPlayer] > 11) {
+      if (places[currentPlayer] > 11)
         places[currentPlayer] = places[currentPlayer] - 12;
-      }
 
       console.log(
         players[currentPlayer] + "'s new location is " + places[currentPlayer]
@@ -114,7 +113,7 @@ exports.Game = function() {
   };
 
   this.wasCorrectlyAnswered = function() {
-    if (inPenaltyBox[currentPlayer]) {
+    if (inPenaltyBox[currentPlayer])
       if (isGettingOutOfPenaltyBox) {
         console.log("Answer was correct!!!!");
         purses[currentPlayer] += 1;
@@ -135,7 +134,7 @@ exports.Game = function() {
         if (currentPlayer == players.length) currentPlayer = 0;
         return true;
       }
-    } else {
+    else {
       console.log("Answer was correct!!!!");
 
       purses[currentPlayer] += 1;
@@ -177,9 +176,6 @@ game.add("Sue");
 do {
   game.roll(Math.floor(Math.random() * 6) + 1);
 
-  if (Math.floor(Math.random() * 10) == 7) {
-    notAWinner = game.wrongAnswer();
-  } else {
-    notAWinner = game.wasCorrectlyAnswered();
-  }
+  if (Math.floor(Math.random() * 10) == 7) notAWinner = game.wrongAnswer();
+  else notAWinner = game.wasCorrectlyAnswered();
 } while (notAWinner);
