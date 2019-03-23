@@ -158,14 +158,16 @@ exports.Game = function() {
     }
   };
 
+  var nextPlayer = function() {
+    currentPlayer += 1;
+    if (currentPlayer == players.length) currentPlayer = 0;
+  };
+
   this.wrongAnswer = function() {
     console.log("Question was incorrectly answered");
     console.log(players[currentPlayer] + " was sent to the penalty box");
     inPenaltyBox[currentPlayer] = true;
-
-    currentPlayer += 1;
-    if (currentPlayer == players.length) currentPlayer = 0;
-    return true;
+    nextPlayer();
   };
 };
 
@@ -180,6 +182,8 @@ game.add("Sue");
 do {
   game.roll(Math.floor(Math.random() * 6) + 1);
 
-  if (Math.floor(Math.random() * 10) == 7) notAWinner = game.wrongAnswer();
-  else notAWinner = game.wasCorrectlyAnswered();
+  if (Math.floor(Math.random() * 10) == 7) {
+    game.wrongAnswer();
+    notAWinner = true;
+  } else notAWinner = game.wasCorrectlyAnswered();
 } while (notAWinner);
