@@ -2,16 +2,6 @@
 /* global Game */
 require("./game.js");
 
-// describe("The test environment", function() {
-//   it("should pass", function() {
-//     expect(true).toBe(true);
-//   });
-
-//   it("should access game", function() {
-//     expect(Game).toBeDefined();
-//   });
-// });
-
 describe("howManyPlayers is accurate", function() {
   it("is correct for three", function() {
     var game = new Game();
@@ -36,32 +26,26 @@ describe("Wrong answer obstructs movement", function() {
     game.roll(1);
     expect(game.getCurrentPlace()).toBe(1);
   });
-  // user answers question wrong
-  // then user is in the penalty box
-  it("should pass", function() {
-    expect(true).toBe(true);
-  });
 });
 
-// describe("Your specs...", function() {
-//   // it ...
-//   it("should say 'Chet was added'", function() {
-//     console.log = jasmine.createSpy("log");
-//     var game = new Game();
-//     game.add("Chet");
-//     game.add("Pat");
-//     game.add("Sue");
+describe("Start of log output", function() {
+  it("should say 'Chet was added' etc", function() {
+    console.log = jasmine.createSpy("log");
+    var game = new Game();
+    game.add("Chet");
+    game.add("Pat");
+    game.add("Sue");
 
-//     expect(console.log).toHaveBeenCalledWith("Chet was added");
-//     expect(console.log).toHaveBeenCalledWith("Pat was added");
-//     expect(console.log).toHaveBeenCalledWith("Sue was added");
-//     expect(console.log).toHaveBeenCalledWith("They are player number 1");
-//     expect(console.log).toHaveBeenCalledWith("They are player number 2");
-//     expect(console.log).toHaveBeenCalledWith("They are player number 3");
+    expect(console.log).toHaveBeenCalledWith("Chet was added");
+    expect(console.log).toHaveBeenCalledWith("Pat was added");
+    expect(console.log).toHaveBeenCalledWith("Sue was added");
+    expect(console.log).toHaveBeenCalledWith("They are player number 1");
+    expect(console.log).toHaveBeenCalledWith("They are player number 2");
+    expect(console.log).toHaveBeenCalledWith("They are player number 3");
 
-//     game.roll(Math.floor(Math.random() * 6) + 1);
+    game.roll(3);
 
-//     expect(console.log).toHaveBeenCalledWith("Chet is the current player");
-//     expect(console.log).toHaveBeenCalledWith("They have rolled a 3");
-//   });
-// });
+    expect(console.log).toHaveBeenCalledWith("Chet is the current player");
+    expect(console.log).toHaveBeenCalledWith("They have rolled a 3");
+  });
+});
