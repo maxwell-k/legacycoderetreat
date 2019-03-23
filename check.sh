@@ -2,7 +2,7 @@
 # check output matches golden master, defaults to 10 runs, 1000 stored
 #
 # Create golden master with:
-# for i in $(seq 1000) ; do SEED=$i node game.js > $i.output ; done
+# for i in $(seq 1000) ; do SEED=$i node game.js > golden_master/$i.output ; done
 #
 for i in $(seq "${1:-10}");
 do

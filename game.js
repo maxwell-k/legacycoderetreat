@@ -4,6 +4,16 @@ exports = typeof window !== "undefined" && window !== null ? window : global;
 var seedrandom = require("seedrandom");
 if (process.env.SEED) seedrandom(process.env.SEED, { global: true });
 
+var _didPlayerNotWin = function(purses, currentPlayer) {
+  var currentScore = purses[currentPlayer];
+  var highScore = 4; // so six is the first number that wins
+  for (var i = 0; i < purses.length; i++)
+    if (i != currentPlayer && purses[i] > highScore) highScore = purses[i];
+  var didWin = currentScore >= highScore + 2;
+  return !didWin;
+};
+exports._didPlayerNotWin = _didPlayerNotWin;
+
 exports.Game = function() {
   var players = new Array();
   var places = new Array(6);
@@ -19,7 +29,7 @@ exports.Game = function() {
   var isGettingOutOfPenaltyBox = false;
 
   var didPlayerNotWin = function() {
-    return !(purses[currentPlayer] == 6);
+    return _didPlayerNotWin(purses, currentPlayer);
   };
 
   this.getCurrentPlace = function() {

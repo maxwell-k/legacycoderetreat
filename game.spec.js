@@ -1,5 +1,5 @@
 /* eslint-env jasmine */
-/* global Game */
+/* global Game _didPlayerNotWin */
 require("./game.js");
 
 describe("howManyPlayers is accurate", function() {
@@ -34,7 +34,7 @@ describe("Winning the game", function() {
     for (var i = 0; i < 5; i++) game.wasCorrectlyAnswered();
     expect(game.wasCorrectlyAnswered()).toBe(false);
   });
-  it("A two player game ends when a player reaches 6 correct answers", function() {
+  it("A two player game ends when a player reaches at least 6 correct answers and is two ahead", function() {
     var game = new Game();
     game.add("Chet");
     game.add("Pat");
@@ -42,7 +42,15 @@ describe("Winning the game", function() {
       game.wasCorrectlyAnswered();
       game.wasCorrectlyAnswered();
     }
+    expect(game.wasCorrectlyAnswered()).toBe(true);
+    game.wrongAnswer();
     expect(game.wasCorrectlyAnswered()).toBe(false);
+  });
+  it("", function() {
+    expect(_didPlayerNotWin([5, 0], 0)).toBe(true);
+    expect(_didPlayerNotWin([6, 0], 0)).toBe(false);
+    expect(_didPlayerNotWin([6, 6, 6], 1)).toBe(true);
+    expect(_didPlayerNotWin([6, 7, 9], 2)).toBe(false);
   });
 });
 
