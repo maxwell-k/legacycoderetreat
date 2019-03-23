@@ -1,20 +1,23 @@
 require("./game.js"); /* global Game */
+var seedrandom = require('seedrandom');
+var rng = seedrandom('hello');
 
 var notAWinner = false;
 
 var game = new Game();
-var randomNumberGenerator = Math.random;
 
-game.add("Chet");
-game.add("Pat");
-game.add("Sue");
+game.add('Chet');
+game.add('Pat');
+game.add('Sue');
 
-do {
-  game.roll(Math.floor(randomNumberGenerator() * 6) + 1);
+do{
 
-  if (Math.floor(randomNumberGenerator() * 10) == 7) {
+  game.roll(Math.floor(rng()*6) + 1);
+
+  if(Math.floor(rng()*10) == 7){
     notAWinner = game.wrongAnswer();
-  } else {
+  }else{
     notAWinner = game.wasCorrectlyAnswered();
   }
-} while (notAWinner);
+
+}while(notAWinner);
