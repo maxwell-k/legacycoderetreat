@@ -27,6 +27,24 @@ describe("Wrong answer obstructs movement", function() {
     expect(game.getCurrentPlace()).toBe(1);
   });
 });
+describe("Winning the game", function() {
+  it("A single player wins after 6 correct answers", function() {
+    var game = new Game();
+    game.add("Chet");
+    for (var i = 0; i < 5; i++) game.wasCorrectlyAnswered();
+    expect(game.wasCorrectlyAnswered()).toBe(false);
+  });
+  it("A two player game ends when a player reaches 6 correct answers", function() {
+    var game = new Game();
+    game.add("Chet");
+    game.add("Pat");
+    for (var i = 0; i < 5; i++) {
+      game.wasCorrectlyAnswered();
+      game.wasCorrectlyAnswered();
+    }
+    expect(game.wasCorrectlyAnswered()).toBe(false);
+  });
+});
 
 describe("Start of log output", function() {
   it("should say 'Chet was added' etc", function() {
