@@ -1,4 +1,6 @@
-require('./game.js');
+/* eslint-env jasmine */
+/* global Game */
+require("./game.js");
 
 describe("The test environment", function() {
   it("should pass", function() {
