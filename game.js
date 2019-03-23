@@ -145,12 +145,12 @@ exports.Game = function() {
           " Gold Coins."
       );
 
-      var winner = didPlayerWin();
+      var winner2 = didPlayerWin();
 
       currentPlayer += 1;
       if (currentPlayer == players.length) currentPlayer = 0;
 
-      return winner;
+      return winner2;
     }
   };
 
