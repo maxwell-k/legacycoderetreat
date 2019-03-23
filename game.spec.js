@@ -12,7 +12,32 @@ require("./game.js");
 //   });
 // });
 
-describe("The current player cannot move", function() {
+describe("howManyPlayers is accurate", function() {
+  it("is correct for three", function() {
+    var game = new Game();
+    game.add("Chet");
+    game.add("Pat");
+    game.add("Sue");
+    expect(game.howManyPlayers()).toBe(3);
+  });
+});
+describe("Wrong answer obstructs movement", function() {
+  it("after a wrong answer and a even roll the player doesn't move", function() {
+    var game = new Game();
+    game.add("Chet");
+    game.wrongAnswer();
+    game.roll(4);
+    expect(game.getCurrentPlace()).toBe(0);
+  });
+  it("after a wrong answer and a odd roll the player moves", function() {
+    var game = new Game();
+    game.add("Chet");
+    game.wrongAnswer();
+    game.roll(1);
+    expect(game.getCurrentPlace()).toBe(1);
+  });
+  // user answers question wrong
+  // then user is in the penalty box
   it("should pass", function() {
     expect(true).toBe(true);
   });

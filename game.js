@@ -22,6 +22,10 @@ exports.Game = function() {
     return !(purses[currentPlayer] == 6);
   };
 
+  this.getCurrentPlace = function() {
+    return places[currentPlayer];
+  };
+
   var currentCategory = function() {
     if (places[currentPlayer] == 0) return "Pop";
     if (places[currentPlayer] == 4) return "Pop";
