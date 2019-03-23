@@ -1,4 +1,7 @@
+/* eslint-env browser */
 exports = typeof window !== "undefined" && window !== null ? window : global;
+var seedrandom = require('seedrandom');
+if (process.env.SEED) seedrandom(process.env.SEED, { global: true });
 
 exports.Game = function() {
   var players          = new Array();
