@@ -18,7 +18,7 @@ exports.Game = function() {
   var currentPlayer = 0;
   var isGettingOutOfPenaltyBox = false;
 
-  var didPlayerWin = function() {
+  var didPlayerNotWin = function() {
     return !(purses[currentPlayer] == 6);
   };
 
@@ -128,7 +128,7 @@ exports.Game = function() {
             " Gold Coins."
         );
 
-        var winner = didPlayerWin();
+        var winner = didPlayerNotWin();
         currentPlayer += 1;
         if (currentPlayer == players.length) currentPlayer = 0;
 
@@ -149,7 +149,7 @@ exports.Game = function() {
           " Gold Coins."
       );
 
-      var winner2 = didPlayerWin();
+      var winner2 = didPlayerNotWin();
 
       currentPlayer += 1;
       if (currentPlayer == players.length) currentPlayer = 0;
